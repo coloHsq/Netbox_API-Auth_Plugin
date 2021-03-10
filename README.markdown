@@ -17,7 +17,7 @@ All the cryptography is meant to be "one time encryption" as no key is permanent
 ## Installation and configuration
 1. Download this repo and place it under "/opt/netbox/netbox/" (along with other django apps).
 2. Add `'auth_api'` to `PLUGINS` under "/opt/netbox/netbox/netbox/configuration.py".
-3. Add `'mobile_api': {'cache_timeout': 30}` to `PLUGINS_CONFIG` under "/opt/netbox/netbox/netbox/configuration.py".
+3. Add `'auth_api': {'cache_timeout': 30}` to `PLUGINS_CONFIG` under "/opt/netbox/netbox/netbox/configuration.py".
 4. Create or edit 'local_requirements.txt' under "/opt/netbox" and add '-e /opt/netbox/netbox/auth-api'
 5. Run '/opt/netbox/upgrade.sh' and then restart Netbox service
 6. Everything should be up n' running.
