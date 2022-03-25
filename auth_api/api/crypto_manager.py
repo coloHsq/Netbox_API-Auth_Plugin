@@ -10,6 +10,7 @@ from rest_framework import status
 from rest_framework.exceptions import APIException
 
 redis_instance = redis.StrictRedis(host=settings.CACHING_REDIS_HOST, port=settings.CACHING_REDIS_PORT, db=0)
+PLUGIN_SETTINGS = settings.PLUGINS_CONFIG["auth_api"]
 # redis is used to keep in memory keys and nonces, retrieved by a session id sent to clients
 
 
@@ -36,7 +37,7 @@ def create_aes_key():
     nonce_iv = os.urandom(12)
     session_id = b64encode(os.urandom(8)).decode()
     json_data = create_json(key, nonce_iv)
-    redis_instance.set(session_id, json_data, ex=30)
+    redis_instance.set(session_id, json_data, ex=PLUGIN_SETTINGS["cache_timeout"])
     return json_data, session_id
 
 
